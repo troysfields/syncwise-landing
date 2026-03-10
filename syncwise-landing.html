@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyncWise AI — All Your Deadlines, One Smart Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #4F46E5;
+      --primary-dark: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #06B6D4;
+      --dark: #0F172A;
+      --gray-900: #1E293B;
+      --gray-700: #334155;
+      --gray-500: #64748B;
+      --gray-300: #CBD5E1;
+      --gray-100: #F1F5F9;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .nav-cta {
+      background: var(--primary);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--primary-dark); }
+
+    /* HERO */
+    .hero {
+      padding: 140px 40px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero p {
+      font-size: 18px;
+      color: var(--gray-500);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* SIGNUP FORM */
+    .signup-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .signup-form input {
+      padding: 14px 20px;
+      border: 2px solid var(--gray-300);
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: inherit;
+      width: 320px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .signup-form input:focus { border-color: var(--primary); }
+    .signup-form button {
+      padding: 14px 32px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .signup-form button:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .signup-note {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    /* SUCCESS MESSAGE */
+    .success-message {
+      display: none;
+      background: #ECFDF5;
+      border: 1px solid #6EE7B7;
+      color: #065F46;
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-weight: 500;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* MOCKUP */
+    .mockup-section {
+      padding: 0 40px 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .mockup-container {
+      background: var(--gray-900);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    .mockup-topbar {
+      display: flex;
+      gap: 6px;
+      padding: 8px 4px 12px;
+    }
+    .mockup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .mockup-dot.red { background: #EF4444; }
+    .mockup-dot.yellow { background: #EAB308; }
+    .mockup-dot.green { background: #22C55E; }
+    .mockup-inner {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* DASHBOARD PREVIEW */
+    .dash-header {
+      background: var(--primary);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .dash-header h3 { font-size: 16px; font-weight: 700; }
+    .dash-header span { font-size: 13px; opacity: 0.8; }
+    .dash-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .dash-calendar {
+      padding: 20px;
+      border-right: 1px solid var(--gray-100);
+    }
+    .dash-calendar h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .cal-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .cal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cal-item.d2l { background: #FEF3C7; }
+    .cal-item.d2l .cal-dot { background: #F59E0B; }
+    .cal-item.outlook { background: #DBEAFE; }
+    .cal-item.outlook .cal-dot { background: #3B82F6; }
+    .cal-item.ai { background: #EDE9FE; }
+    .cal-item.ai .cal-dot { background: var(--primary); }
+    .cal-time { color: var(--gray-500); font-size: 11px; margin-left: auto; }
+
+    .dash-ai {
+      padding: 20px;
+    }
+    .dash-ai h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .ai-card {
+      background: var(--primary-light);
+      border: 1px solid #C7D2FE;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .ai-card .ai-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .ai-card p {
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+    .priority-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+    .priority-tag.high { background: #FEE2E2; color: #DC2626; }
+    .priority-tag.medium { background: #FEF3C7; color: #D97706; }
+
+    /* FEATURES */
+    .features {
+      padding: 80px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .features-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .features-header h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .features-header p {
+      font-size: 16px;
+      color: var(--gray-500);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .feature-card {
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid var(--gray-100);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    /* HOW IT WORKS */
+    .how-it-works {
+      padding: 80px 40px;
+      background: var(--gray-100);
+    }
+    .how-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .how-it-works h2 {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 48px;
+    }
+    .step {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 36px;
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .step-content h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+
+    /* PRICING */
+    .pricing {
+      padding: 80px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .pricing h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .pricing > p {
+      color: var(--gray-500);
+      margin-bottom: 40px;
+    }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .price-card {
+      padding: 32px;
+      border-radius: 16px;
+      border: 2px solid var(--gray-100);
+      text-align: left;
+    }
+    .price-card.featured {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .price-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .price-card .price {
+      font-size: 36px;
+      font-weight: 800;
+      margin: 12px 0;
+    }
+    .price-card .price span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-500);
+    }
+    .price-card ul {
+      list-style: none;
+      margin-top: 16px;
+    }
+    .price-card ul li {
+      font-size: 14px;
+      padding: 6px 0;
+      color: var(--gray-700);
+    }
+    .price-card ul li::before {
+      content: "\2713  ";
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 80px 40px;
+      background: var(--dark);
+      text-align: center;
+    }
+    .cta h2 {
+      font-size: 36px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 12px;
+    }
+    .cta p {
+      color: var(--gray-300);
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+    .cta .signup-form input {
+      border-color: var(--gray-700);
+      background: var(--gray-900);
+      color: white;
+    }
+    .cta .signup-form input::placeholder { color: var(--gray-500); }
+    .cta .signup-note { color: var(--gray-500); }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 40px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--gray-500);
+      border-top: 1px solid var(--gray-100);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 12px 20px; }
+      .hero { padding: 120px 20px 60px; }
+      .hero h1 { font-size: 32px; }
+      .signup-form { flex-direction: column; align-items: center; }
+      .signup-form input { width: 100%; max-width: 400px; }
+      .mockup-section { padding: 0 20px 60px; }
+      .dash-body { grid-template-columns: 1fr; }
+      .dash-calendar { border-right: none; border-bottom: 1px solid var(--gray-100); }
+      .features { padding: 60px 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .how-it-works { padding: 60px 20px; }
+      .pricing { padding: 60px 20px; }
+      .pricing-cards { grid-template-columns: 1fr; }
+      .cta { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">
+      <div class="logo-icon">S</div>
+      SyncWise AI
+    </a>
+    <a class="nav-cta" href="#signup">Get Early Access</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="signup">
+    <div class="badge">Coming Soon to Colorado Mesa University</div>
+    <h1>All Your Deadlines,<br><span>One Smart Calendar</span></h1>
+    <p>SyncWise AI pulls your assignments from D2L, syncs your Outlook calendar, and uses AI to tell you what to work on first. Stop juggling — start syncing.</p>
+
+    <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)">
+      <input type="email" placeholder="Enter your .edu email" required id="emailInput">
+      <button type="submit">Join the Waitlist</button>
+    </form>
+    <p class="signup-note">Free to join. Be the first to know when we launch.</p>
+    <div class="success-message" id="successMsg">
+      You're on the list! We'll email you when SyncWise AI is ready.
+    </div>
+  </section>
+
+  <!-- MOCKUP -->
+  <section class="mockup-section">
+    <div class="mockup-container">
+      <div class="mockup-topbar">
+        <div class="mockup-dot red"></div>
+        <div class="mockup-dot yellow"></div>
+        <div class="mockup-dot green"></div>
+      </div>
+      <div class="mockup-inner">
+        <div class="dash-header">
+          <h3>SyncWise AI Dashboard</h3>
+          <span>Tuesday, March 10</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-calendar">
+            <h4>Today's Schedule</h4>
+            <div class="cal-item d2l">
+              <div class="cal-dot"></div>
+              ENTR 450 — Section IV-A Due
+              <span class="cal-time">11:59 PM</span>
+            </div>
+            <div class="cal-item outlook">
+              <div class="cal-dot"></div>
+              Team Meeting — Marketing Group
+              <span class="cal-time">2:00 PM</span>
+            </div>
+            <div class="cal-item d2l">
+              <div class="cal-dot"></div>
+              ACCT 301 — Chapter 8 Quiz
+              <span class="cal-time">5:00 PM</span>
+            </div>
+            <div class="cal-item outlook">
+              <div class="cal-dot"></div>
+              Office Hours — Prof. Jouflas
+              <span class="cal-time">3:30 PM</span>
+            </div>
+            <div class="cal-item ai">
+              <div class="cal-dot"></div>
+              Study Block — AI Suggested
+              <span class="cal-time">6:00 PM</span>
+            </div>
+          </div>
+          <div class="dash-ai">
+            <h4>AI Priority Suggestions</h4>
+            <div class="ai-card">
+              <div class="ai-label">Recommended Action</div>
+              <p>Start with your ENTR 450 Market Analysis — it's worth 50 points and due tonight. Your quiz is only 10 points.</p>
+              <span class="priority-tag high">High Priority</span>
+            </div>
+            <div class="ai-card">
+              <div class="ai-label">Smart Reminder</div>
+              <p>You have 3 assignments due this week. Block 2 hours tomorrow morning for your ACCT 301 homework.</p>
+              <span class="priority-tag medium">Plan Ahead</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-header">
+      <h2>Everything in one place</h2>
+      <p>No more switching between D2L, Outlook, and Google Calendar to figure out what's due.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background: #FEF3C7;">&#128218;</div>
+        <h3>D2L Integration</h3>
+        <p>Automatically imports assignments, due dates, and grades from your Brightspace LMS. No manual entry.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: #DBEAFE;">&#128197;</div>
+        <h3>Outlook Sync</h3>
+        <p>Pulls in your classes, meetings, and events from your university Outlook calendar in real time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: #EDE9FE;">&#129302;</div>
+        <h3>AI Prioritization</h3>
+        <p>Smart suggestions on what to work on first, based on due dates, point values, and your workload.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works">
+    <div class="how-inner">
+      <h2>How it works</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Sign in with your school account</h3>
+          <p>Use your existing university Microsoft login. No new passwords, no setup hassle.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>We pull in your world</h3>
+          <p>SyncWise connects to D2L and Outlook to grab your assignments, events, and deadlines automatically.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>AI tells you what matters</h3>
+          <p>Our AI engine analyzes your schedule, weighs priorities, and gives you a clear game plan every day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <h2>Simple, student-friendly pricing</h2>
+    <p>Start free. Upgrade when you're ready.</p>
+    <div class="pricing-cards">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <div class="price">Free</div>
+        <ul>
+          <li>D2L assignment sync</li>
+          <li>Outlook calendar view</li>
+          <li>Unified dashboard</li>
+          <li>Mobile friendly</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <h3>Premium</h3>
+        <div class="price">$5.99<span>/month</span></div>
+        <ul>
+          <li>Everything in Basic</li>
+          <li>AI priority engine</li>
+          <li>Smart study blocks</li>
+          <li>Weekly performance insights</li>
+          <li>Multi-platform sync</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Be first in line</h2>
+    <p>SyncWise AI is launching at CMU first. Join the waitlist to get early access.</p>
+    <form class="signup-form" onsubmit="handleSignup(event)">
+      <input type="email" placeholder="your.name@coloradomesa.edu" required>
+      <button type="submit">Join the Waitlist</button>
+    </form>
+    <p class="signup-note">We'll only email you about launch updates. No spam.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 SyncWise AI. Built at Colorado Mesa University.
+  </footer>
+
+  <script>
+    // Simple signup tracking with localStorage (for demo)
+    // In production, this would POST to a backend/Supabase/Formspree
+    let signupCount = parseInt(localStorage.getItem('syncwise_signups') || '0');
+
+    function handleSignup(e) {
+      e.preventDefault();
+      const form = e.target;
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput.value;
+
+      // Store signup locally (replace with real backend later)
+      const signups = JSON.parse(localStorage.getItem('syncwise_emails') || '[]');
+      if (!signups.includes(email)) {
+        signups.push(email);
+        localStorage.setItem('syncwise_emails', JSON.stringify(signups));
+        signupCount++;
+        localStorage.setItem('syncwise_signups', signupCount.toString());
+      }
+
+      // Show success
+      form.style.display = 'none';
+      const successMsg = document.getElementById('successMsg');
+      if (successMsg) {
+        successMsg.style.display = 'block';
+      } else {
+        // For bottom CTA form
+        const msg = document.createElement('div');
+        msg.className = 'success-message';
+        msg.style.display = 'block';
+        msg.style.margin = '0 auto';
+        msg.textContent = "You're on the list! We'll email you when SyncWise AI is ready.";
+        form.parentNode.insertBefore(msg, form.nextSibling);
+      }
+    }
+  </script>
+</body>
+</html>
