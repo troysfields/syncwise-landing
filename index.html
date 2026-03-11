@@ -203,12 +203,43 @@
       color: white;
     }
     .dash-header h3 { font-size: 16px; font-weight: 700; }
-    .dash-header span { font-size: 13px; opacity: 0.8; }
+    .dash-header-right { display: flex; align-items: center; gap: 14px; }
+    .dash-header-right span { font-size: 13px; opacity: 0.8; }
+    .header-icon {
+      font-size: 16px;
+      opacity: 0.9;
+      cursor: default;
+      position: relative;
+    }
+    .notif-dot {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      width: 8px;
+      height: 8px;
+      background: #EF4444;
+      border-radius: 50%;
+      border: 1.5px solid var(--primary);
+    }
     .dash-body {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 48px 1fr 1fr;
       gap: 0;
     }
+    .dash-sidebar {
+      background: #1E293B;
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .sidebar-icon {
+      font-size: 16px;
+      opacity: 0.7;
+      cursor: default;
+    }
+    .sidebar-icon.active { opacity: 1; }
     .dash-calendar {
       padding: 20px;
       border-right: 1px solid var(--gray-100);
@@ -286,6 +317,62 @@
     }
     .priority-tag.high { background: #FEE2E2; color: #DC2626; }
     .priority-tag.medium { background: #FEF3C7; color: #D97706; }
+
+    .needs-attention {
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+    .needs-attention .na-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #EA580C;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .needs-attention p {
+      font-size: 12px;
+      color: var(--gray-700);
+      line-height: 1.4;
+    }
+    .email-suggestion {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+    .email-suggestion .es-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #16A34A;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .email-suggestion p {
+      font-size: 12px;
+      color: var(--gray-700);
+      line-height: 1.4;
+    }
+    .mini-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .mini-btn {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: none;
+      cursor: default;
+    }
+    .mini-btn.accept { background: #DCFCE7; color: #16A34A; }
+    .mini-btn.dismiss { background: #F1F5F9; color: #64748B; }
 
     /* FEATURES */
     .features {
@@ -406,9 +493,9 @@
     }
     .pricing-cards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 24px;
-      max-width: 700px;
+      max-width: 420px;
       margin: 0 auto;
     }
     .price-card {
@@ -494,12 +581,13 @@
       .signup-form input { width: 100%; max-width: 400px; }
       .mockup-section { padding: 0 20px 60px; }
       .dash-body { grid-template-columns: 1fr; }
+      .dash-sidebar { display: none; }
       .dash-calendar { border-right: none; border-bottom: 1px solid var(--gray-100); }
       .features { padding: 60px 20px; }
       .features-grid { grid-template-columns: 1fr; }
       .how-it-works { padding: 60px 20px; }
       .pricing { padding: 60px 20px; }
-      .pricing-cards { grid-template-columns: 1fr; }
+      .pricing-cards { grid-template-columns: 1fr; max-width: 100%; }
       .cta { padding: 60px 20px; }
     }
   </style>
@@ -519,7 +607,7 @@
   <section class="hero" id="signup">
     <div class="badge">Coming Soon to Colorado Mesa University</div>
     <h1>All Your Deadlines,<br><span>One Smart Calendar</span></h1>
-    <p>SyncWise AI pulls your assignments from D2L, syncs your Outlook calendar, and uses AI to tell you what to work on first. Stop juggling — start syncing.</p>
+    <p>SyncWise AI pulls your assignments, quizzes, discussions, and grades from D2L, syncs your Outlook calendar and inbox, and uses AI to tell you what to work on first. Dark mode, smart notifications, focus mode, and more — all in one dashboard.</p>
 
     <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)">
       <input type="email" placeholder="Enter your .edu email" required id="emailInput">
@@ -542,14 +630,24 @@
       <div class="mockup-inner">
         <div class="dash-header">
           <h3>SyncWise AI Dashboard</h3>
-          <span>Tuesday, March 10</span>
+          <div class="dash-header-right">
+            <span>Tuesday, March 11</span>
+            <span class="header-icon">&#127769;</span>
+            <span class="header-icon" style="position:relative;">&#128276;<span class="notif-dot"></span></span>
+          </div>
         </div>
         <div class="dash-body">
+          <div class="dash-sidebar">
+            <span class="sidebar-icon active">&#128202;</span>
+            <span class="sidebar-icon">&#128197;</span>
+            <span class="sidebar-icon">&#128386;</span>
+            <span class="sidebar-icon">&#9881;</span>
+          </div>
           <div class="dash-calendar">
-            <h4>Today's Schedule</h4>
+            <h4>Today's Schedule &mdash; Day View</h4>
             <div class="cal-item d2l">
               <div class="cal-dot"></div>
-              ENTR 450 — Section IV-A Due
+              ENTR 450 — Business Plan Due
               <span class="cal-time">11:59 PM</span>
             </div>
             <div class="cal-item outlook">
@@ -569,7 +667,7 @@
             </div>
             <div class="cal-item ai">
               <div class="cal-dot"></div>
-              Study Block — AI Suggested
+              Study Block — Manual Event
               <span class="cal-time">6:00 PM</span>
             </div>
           </div>
@@ -577,13 +675,20 @@
             <h4>AI Priority Suggestions</h4>
             <div class="ai-card">
               <div class="ai-label">Recommended Action</div>
-              <p>Start with your ENTR 450 Market Analysis — it's worth 50 points and due tonight. Your quiz is only 10 points.</p>
+              <p>Start with your ENTR 450 Business Plan — it's worth 50 points and due tonight. Your quiz is only 10 points.</p>
               <span class="priority-tag high">High Priority</span>
             </div>
-            <div class="ai-card">
-              <div class="ai-label">Smart Reminder</div>
-              <p>You have 3 assignments due this week. Block 2 hours tomorrow morning for your ACCT 301 homework.</p>
-              <span class="priority-tag medium">Plan Ahead</span>
+            <div class="needs-attention">
+              <div class="na-label">Needs Attention</div>
+              <p>COMM 315 Discussion reply due in 4 hours &bull; New grade posted: ACCT 301 (87%)</p>
+            </div>
+            <div class="email-suggestion">
+              <div class="es-label">Email Suggestion</div>
+              <p>Group project meeting found in inbox — Thursday 3 PM at UC 220</p>
+              <div class="mini-actions">
+                <span class="mini-btn accept">Accept</span>
+                <span class="mini-btn dismiss">Dismiss</span>
+              </div>
             </div>
           </div>
         </div>
@@ -600,18 +705,33 @@
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon" style="background: #FEF3C7;">&#128218;</div>
-        <h3>D2L Integration</h3>
-        <p>Automatically imports assignments, due dates, and grades from your Brightspace LMS. No manual entry.</p>
+        <h3>Full D2L Integration</h3>
+        <p>Pulls assignments, quizzes, discussions, announcements, checklists, content modules, and grades from Brightspace — all in one view with submission status and course progress.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon" style="background: #DBEAFE;">&#128197;</div>
-        <h3>Outlook Sync</h3>
-        <p>Pulls in your classes, meetings, and events from your university Outlook calendar in real time.</p>
+        <h3>Outlook Calendar + Email</h3>
+        <p>Syncs your calendar events and scans your inbox for group projects, campus events, and office hours — then suggests them as calendar events you can accept or dismiss.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon" style="background: #EDE9FE;">&#129302;</div>
         <h3>AI Prioritization</h3>
-        <p>Smart suggestions on what to work on first, based on due dates, point values, and your workload.</p>
+        <p>AI analyzes your schedule, weighs point values and deadlines, and tells you exactly what to work on first. Includes a "Needs Attention" smart list for urgent items.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: #FCE7F3;">&#128276;</div>
+        <h3>Smart Notifications</h3>
+        <p>Browser push and in-app alerts with per-item-type controls, quiet hours, custom timing, and preset profiles. Never miss a deadline, never get spammed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: #ECFDF5;">&#127912;</div>
+        <h3>Dark Mode + Focus Mode</h3>
+        <p>Full dark mode with system preference detection. Focus mode strips away distractions so you can lock in on what's due next. Plus sidebar navigation and full accessibility.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: #FEF9C3;">&#128200;</div>
+        <h3>Instructor Dashboard</h3>
+        <p>Faculty get submission rates, a grading queue, student engagement data, an announcement composer, and a student-view calendar — all from a single interface.</p>
       </div>
     </div>
   </section>
@@ -631,14 +751,14 @@
         <div class="step-num">2</div>
         <div class="step-content">
           <h3>We pull in your world</h3>
-          <p>SyncWise connects to D2L and Outlook to grab your assignments, events, and deadlines automatically.</p>
+          <p>SyncWise connects to D2L and Outlook to grab your assignments, quizzes, discussions, grades, calendar events, and even relevant emails — automatically.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-content">
           <h3>AI tells you what matters</h3>
-          <p>Our AI engine analyzes your schedule, weighs priorities, and gives you a clear game plan every day.</p>
+          <p>Our AI engine analyzes your schedule, weighs priorities, flags items that need attention, and gives you a clear game plan every day — with smart notifications so nothing slips through.</p>
         </div>
       </div>
     </div>
@@ -646,28 +766,21 @@
 
   <!-- PRICING -->
   <section class="pricing">
-    <h2>Simple, student-friendly pricing</h2>
-    <p>Start free. Upgrade when you're ready.</p>
+    <h2>Free for the beta</h2>
+    <p>All features included. No credit card. No catch.</p>
     <div class="pricing-cards">
-      <div class="price-card">
-        <h3>Basic</h3>
+      <div class="price-card featured">
+        <h3>Beta Access</h3>
         <div class="price">Free</div>
         <ul>
-          <li>D2L assignment sync</li>
-          <li>Outlook calendar view</li>
-          <li>Unified dashboard</li>
-          <li>Mobile friendly</li>
-        </ul>
-      </div>
-      <div class="price-card featured">
-        <h3>Premium</h3>
-        <div class="price">$5.99<span>/month</span></div>
-        <ul>
-          <li>Everything in Basic</li>
-          <li>AI priority engine</li>
-          <li>Smart study blocks</li>
-          <li>Weekly performance insights</li>
-          <li>Multi-platform sync</li>
+          <li>Full D2L sync — assignments, quizzes, discussions, grades</li>
+          <li>Outlook calendar + email scanning</li>
+          <li>AI priority engine + Needs Attention alerts</li>
+          <li>Smart notifications with quiet hours</li>
+          <li>Dark mode, focus mode, sidebar navigation</li>
+          <li>Day / week / month calendar views</li>
+          <li>Manual calendar entries + Export My Week</li>
+          <li>Instructor dashboard (faculty)</li>
         </ul>
       </div>
     </div>
