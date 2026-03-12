@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SyncWise AI — All Your Deadlines, One Smart Calendar</title>
+  <title>CMU AI Calendar — All Your Deadlines, One Smart Calendar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --primary: #4F46E5;
-      --primary-dark: #4338CA;
-      --primary-light: #EEF2FF;
-      --accent: #06B6D4;
+      --primary: #5D0022;
+      --primary-dark: #470019;
+      --primary-light: #FDF2F4;
+      --accent: #FBCE04;
       --dark: #0F172A;
       --gray-900: #1E293B;
       --gray-700: #334155;
@@ -65,6 +65,12 @@
       color: white;
       font-size: 16px;
       font-weight: 700;
+    }
+    .logo-sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-500);
+      margin-left: -4px;
     }
     .nav-cta {
       background: var(--primary);
@@ -217,7 +223,7 @@
       right: -6px;
       width: 8px;
       height: 8px;
-      background: #EF4444;
+      background: #FBCE04;
       border-radius: 50%;
       border: 1.5px solid var(--primary);
     }
@@ -272,7 +278,7 @@
     .cal-item.d2l .cal-dot { background: #F59E0B; }
     .cal-item.outlook { background: #DBEAFE; }
     .cal-item.outlook .cal-dot { background: #3B82F6; }
-    .cal-item.ai { background: #EDE9FE; }
+    .cal-item.ai { background: var(--primary-light); }
     .cal-item.ai .cal-dot { background: var(--primary); }
     .cal-time { color: var(--gray-500); font-size: 11px; margin-left: auto; }
 
@@ -289,7 +295,7 @@
     }
     .ai-card {
       background: var(--primary-light);
-      border: 1px solid #C7D2FE;
+      border: 1px solid #E8B4BF;
       border-radius: 10px;
       padding: 14px;
       margin-bottom: 10px;
@@ -597,8 +603,9 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="#">
-      <div class="logo-icon">S</div>
-      SyncWise AI
+      <div class="logo-icon">C</div>
+      CMU AI Calendar
+      <span class="logo-sub">by SyncWise AI</span>
     </a>
     <a class="nav-cta" href="#signup">Get Early Access</a>
   </nav>
@@ -607,7 +614,7 @@
   <section class="hero" id="signup">
     <div class="badge">Coming Soon to Colorado Mesa University</div>
     <h1>All Your Deadlines,<br><span>One Smart Calendar</span></h1>
-    <p>SyncWise AI pulls your assignments, quizzes, discussions, and grades from D2L, syncs your Outlook calendar and inbox, and uses AI to tell you what to work on first. Dark mode, smart notifications, focus mode, and more — all in one dashboard.</p>
+    <p>CMU AI Calendar pulls your assignments, quizzes, discussions, and grades from D2L and uses AI to tell you what to work on first. Dark mode, smart notifications, focus mode, and more — all in one dashboard.</p>
 
     <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)">
       <input type="email" placeholder="Enter your .edu email" required id="emailInput">
@@ -615,7 +622,7 @@
     </form>
     <p class="signup-note">Free to join. Be the first to know when we launch.</p>
     <div class="success-message" id="successMsg">
-      You're on the list! We'll email you when SyncWise AI is ready.
+      You're on the list! We'll email you when CMU AI Calendar is ready.
     </div>
   </section>
 
@@ -629,7 +636,7 @@
       </div>
       <div class="mockup-inner">
         <div class="dash-header">
-          <h3>SyncWise AI Dashboard</h3>
+          <h3>CMU AI Calendar</h3>
           <div class="dash-header-right">
             <span>Tuesday, March 11</span>
             <span class="header-icon">&#127769;</span>
@@ -714,7 +721,7 @@
         <p>Syncs your calendar events and scans your inbox for group projects, campus events, and office hours — then suggests them as calendar events you can accept or dismiss.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon" style="background: #EDE9FE;">&#129302;</div>
+        <div class="feature-icon" style="background: var(--primary-light);">&#129302;</div>
         <h3>AI Prioritization</h3>
         <p>AI analyzes your schedule, weighs point values and deadlines, and tells you exactly what to work on first. Includes a "Needs Attention" smart list for urgent items.</p>
       </div>
@@ -743,15 +750,15 @@
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <h3>Sign in with your school account</h3>
-          <p>Use your existing university Microsoft login. No new passwords, no setup hassle.</p>
+          <h3>Create your account</h3>
+          <p>Sign up with your email and choose Student or Instructor. Instructors verify with their @coloradomesa.edu address.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h3>We pull in your world</h3>
-          <p>SyncWise connects to D2L and Outlook to grab your assignments, quizzes, discussions, grades, calendar events, and even relevant emails — automatically.</p>
+          <h3>Connect your D2L calendar</h3>
+          <p>Paste your D2L calendar feed URL and we pull in your assignments, quizzes, discussions, and grades automatically.</p>
         </div>
       </div>
       <div class="step">
@@ -789,7 +796,7 @@
   <!-- CTA -->
   <section class="cta">
     <h2>Be first in line</h2>
-    <p>SyncWise AI is launching at CMU first. Join the waitlist to get early access.</p>
+    <p>CMU AI Calendar is launching at Colorado Mesa University first. Join the waitlist to get early access.</p>
     <form class="signup-form" onsubmit="handleSignup(event)">
       <input type="email" placeholder="your.name@coloradomesa.edu" required>
       <button type="submit">Join the Waitlist</button>
@@ -799,7 +806,7 @@
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2026 SyncWise AI. Built at Colorado Mesa University.<br>
+    &copy; 2026 CMU AI Calendar by SyncWise AI. Built at Colorado Mesa University.<br>
     <a href="mailto:troysfields@gmail.com" style="color: var(--gray-500); text-decoration: none; transition: color 0.2s;">troysfields@gmail.com</a>
   </footer>
 
@@ -834,7 +841,7 @@
         msg.className = 'success-message';
         msg.style.display = 'block';
         msg.style.margin = '0 auto';
-        msg.textContent = "You're on the list! We'll email you when SyncWise AI is ready.";
+        msg.textContent = "You're on the list! We'll email you when CMU AI Calendar is ready.";
         form.parentNode.insertBefore(msg, form.nextSibling);
       }
     }
