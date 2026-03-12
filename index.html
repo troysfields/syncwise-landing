@@ -607,23 +607,17 @@
       CMU AI Calendar
       <span class="logo-sub">by SyncWise AI</span>
     </a>
-    <a class="nav-cta" href="#signup">Get Early Access</a>
+    <a class="nav-cta" href="https://syncwise-app.vercel.app/login">Try It Now</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="signup">
-    <div class="badge">Coming Soon to Colorado Mesa University</div>
+    <div class="badge">Now Live at Colorado Mesa University</div>
     <h1>All Your Deadlines,<br><span>One Smart Calendar</span></h1>
-    <p>CMU AI Calendar pulls your assignments, quizzes, discussions, and grades from D2L and uses AI to tell you what to work on first. Dark mode, smart notifications, focus mode, and more — all in one dashboard.</p>
+    <p>CMU AI Calendar pulls your assignments, quizzes, and grades from D2L and uses AI to tell you what to work on first. Dark mode, smart notifications, focus mode, an AI chatbot, and more — all in one dashboard.</p>
 
-    <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)">
-      <input type="email" placeholder="Enter your .edu email" required id="emailInput">
-      <button type="submit">Join the Waitlist</button>
-    </form>
-    <p class="signup-note">Free to join. Be the first to know when we launch.</p>
-    <div class="success-message" id="successMsg">
-      You're on the list! We'll email you when CMU AI Calendar is ready.
-    </div>
+    <a class="nav-cta" href="https://syncwise-app.vercel.app/login" style="display:inline-block;padding:16px 40px;font-size:18px;border-radius:12px;text-decoration:none;">Get Started Free</a>
+    <p class="signup-note">Free during beta. No credit card required.</p>
   </section>
 
   <!-- MOCKUP -->
@@ -657,17 +651,17 @@
               ENTR 450 — Business Plan Due
               <span class="cal-time">11:59 PM</span>
             </div>
-            <div class="cal-item outlook">
-              <div class="cal-dot"></div>
-              Team Meeting — Marketing Group
-              <span class="cal-time">2:00 PM</span>
-            </div>
             <div class="cal-item d2l">
               <div class="cal-dot"></div>
               ACCT 301 — Chapter 8 Quiz
               <span class="cal-time">5:00 PM</span>
             </div>
-            <div class="cal-item outlook">
+            <div class="cal-item d2l">
+              <div class="cal-dot"></div>
+              COMM 315 — Discussion Reply
+              <span class="cal-time">11:59 PM</span>
+            </div>
+            <div class="cal-item ai">
               <div class="cal-dot"></div>
               Office Hours — Prof. Jouflas
               <span class="cal-time">3:30 PM</span>
@@ -689,14 +683,6 @@
               <div class="na-label">Needs Attention</div>
               <p>COMM 315 Discussion reply due in 4 hours &bull; New grade posted: ACCT 301 (87%)</p>
             </div>
-            <div class="email-suggestion">
-              <div class="es-label">Email Suggestion</div>
-              <p>Group project meeting found in inbox — Thursday 3 PM at UC 220</p>
-              <div class="mini-actions">
-                <span class="mini-btn accept">Accept</span>
-                <span class="mini-btn dismiss">Dismiss</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -707,18 +693,18 @@
   <section class="features">
     <div class="features-header">
       <h2>Everything in one place</h2>
-      <p>No more switching between D2L, Outlook, and Google Calendar to figure out what's due.</p>
+      <p>No more digging through D2L to figure out what's due and what matters most.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon" style="background: #FEF3C7;">&#128218;</div>
-        <h3>Full D2L Integration</h3>
-        <p>Pulls assignments, quizzes, discussions, announcements, checklists, content modules, and grades from Brightspace — all in one view with submission status and course progress.</p>
+        <h3>D2L Calendar Sync</h3>
+        <p>Pulls assignments, quizzes, discussions, announcements, and grades from Brightspace — all in one view with color-coded courses and due date tracking.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon" style="background: #DBEAFE;">&#128197;</div>
-        <h3>Outlook Calendar + Email</h3>
-        <p>Syncs your calendar events and scans your inbox for group projects, campus events, and office hours — then suggests them as calendar events you can accept or dismiss.</p>
+        <div class="feature-icon" style="background: #DBEAFE;">&#128172;</div>
+        <h3>AI-Powered Chatbot</h3>
+        <p>Ask questions about your schedule, get study tips, and check what's due next — all through a built-in AI assistant that knows your courses and deadlines.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon" style="background: var(--primary-light);">&#129302;</div>
@@ -738,7 +724,7 @@
       <div class="feature-card">
         <div class="feature-icon" style="background: #FEF9C3;">&#128200;</div>
         <h3>Instructor Dashboard</h3>
-        <p>Faculty get submission rates, a grading queue, student engagement data, an announcement composer, and a student-view calendar — all from a single interface.</p>
+        <p>Faculty get a calendar view of all course deadlines, assignment management, conflict detection, and a student-view preview — with more features on the roadmap.</p>
       </div>
     </div>
   </section>
@@ -780,9 +766,9 @@
         <h3>Beta Access</h3>
         <div class="price">Free</div>
         <ul>
-          <li>Full D2L sync — assignments, quizzes, discussions, grades</li>
-          <li>Outlook calendar + email scanning</li>
+          <li>D2L sync — assignments, quizzes, discussions, grades</li>
           <li>AI priority engine + Needs Attention alerts</li>
+          <li>AI chatbot assistant</li>
           <li>Smart notifications with quiet hours</li>
           <li>Dark mode, focus mode, sidebar navigation</li>
           <li>Day / week / month calendar views</li>
@@ -795,13 +781,10 @@
 
   <!-- CTA -->
   <section class="cta">
-    <h2>Be first in line</h2>
-    <p>CMU AI Calendar is launching at Colorado Mesa University first. Join the waitlist to get early access.</p>
-    <form class="signup-form" onsubmit="handleSignup(event)">
-      <input type="email" placeholder="your.name@coloradomesa.edu" required>
-      <button type="submit">Join the Waitlist</button>
-    </form>
-    <p class="signup-note">We'll only email you about launch updates. No spam.</p>
+    <h2>Ready to get organized?</h2>
+    <p>CMU AI Calendar is live and free for Colorado Mesa University students and faculty.</p>
+    <a class="nav-cta" href="https://syncwise-app.vercel.app/login" style="display:inline-block;padding:16px 40px;font-size:18px;border-radius:12px;text-decoration:none;">Get Started Free</a>
+    <p class="signup-note" style="margin-top:16px;">No credit card. No catch. Just a better calendar.</p>
   </section>
 
   <!-- FOOTER -->
@@ -810,41 +793,5 @@
     <a href="mailto:troysfields@gmail.com" style="color: var(--gray-500); text-decoration: none; transition: color 0.2s;">troysfields@gmail.com</a>
   </footer>
 
-  <script>
-    // Simple signup tracking with localStorage (for demo)
-    // In production, this would POST to a backend/Supabase/Formspree
-    let signupCount = parseInt(localStorage.getItem('syncwise_signups') || '0');
-
-    function handleSignup(e) {
-      e.preventDefault();
-      const form = e.target;
-      const emailInput = form.querySelector('input[type="email"]');
-      const email = emailInput.value;
-
-      // Store signup locally (replace with real backend later)
-      const signups = JSON.parse(localStorage.getItem('syncwise_emails') || '[]');
-      if (!signups.includes(email)) {
-        signups.push(email);
-        localStorage.setItem('syncwise_emails', JSON.stringify(signups));
-        signupCount++;
-        localStorage.setItem('syncwise_signups', signupCount.toString());
-      }
-
-      // Show success
-      form.style.display = 'none';
-      const successMsg = document.getElementById('successMsg');
-      if (successMsg) {
-        successMsg.style.display = 'block';
-      } else {
-        // For bottom CTA form
-        const msg = document.createElement('div');
-        msg.className = 'success-message';
-        msg.style.display = 'block';
-        msg.style.margin = '0 auto';
-        msg.textContent = "You're on the list! We'll email you when CMU AI Calendar is ready.";
-        form.parentNode.insertBefore(msg, form.nextSibling);
-      }
-    }
-  </script>
 </body>
 </html>
